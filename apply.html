@@ -1103,6 +1103,467 @@
                 padding: 20px
             }
         }
+
+        /* INTERACTIVE 2027 ENHANCEMENTS */
+        html {
+            scroll-padding-top: 96px
+        }
+
+        body {
+            overflow-x: hidden
+        }
+
+        button,
+        a,
+        input,
+        select,
+        textarea {
+            -webkit-tap-highlight-color: transparent
+        }
+
+        :where(button, a, input, select, textarea):focus-visible {
+            outline: 3px solid #cda65a;
+            outline-offset: 3px
+        }
+
+        .menu {
+            width: 48px;
+            height: 48px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            position: relative;
+            z-index: 82;
+            transition: background .25s, transform .25s;
+            box-shadow: 0 4px 15px #073d3212
+        }
+
+        .menu:hover {
+            background: #e8f3ec;
+            transform: scale(1.04)
+        }
+
+        .hamburger-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 22px;
+            align-items: center
+        }
+
+        .hamburger-lines span {
+            height: 2.5px;
+            width: 22px;
+            border-radius: 8px;
+            background: #073d32;
+            display: block;
+            transition: transform .38s cubic-bezier(.2, .8, .2, 1), opacity .2s, width .3s
+        }
+
+        .hamburger-lines span:nth-child(2) {
+            width: 16px;
+            align-self: flex-end
+        }
+
+        .menu[aria-expanded=true] .hamburger-lines span:first-child {
+            transform: translateY(7.5px) rotate(45deg)
+        }
+
+        .menu[aria-expanded=true] .hamburger-lines span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(9px)
+        }
+
+        .menu[aria-expanded=true] .hamburger-lines span:last-child {
+            transform: translateY(-7.5px) rotate(-45deg)
+        }
+
+        .menu-backdrop {
+            position: fixed;
+            inset: 0;
+            background: #041e1bb3;
+            backdrop-filter: blur(6px);
+            z-index: 19;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .35s, visibility .35s
+        }
+
+        .menu-backdrop.visible {
+            opacity: 1;
+            visibility: visible
+        }
+
+        @media(max-width:760px) {
+            .menu {
+                display: flex
+            }
+
+            .nav {
+                display: flex !important;
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: auto;
+                width: min(370px, 88vw);
+                height: 100dvh;
+                max-height: none;
+                overflow-y: auto;
+                padding: 100px 25px 35px;
+                z-index: 21;
+                border: 0;
+                border-radius: 26px 0 0 26px;
+                box-shadow: -25px 0 80px #0003;
+                transform: translateX(110%);
+                visibility: hidden;
+                transition: transform .5s cubic-bezier(.16, 1, .3, 1), visibility .5s;
+                gap: 8px
+            }
+
+            .nav.open {
+                transform: translateX(0);
+                visibility: visible
+            }
+
+            .nav a {
+                border-radius: 13px;
+                padding: 17px 16px;
+                font-size: 15px;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: transform .4s, opacity .4s, background .2s
+            }
+
+            .nav.open a {
+                opacity: 1;
+                transform: translateX(0)
+            }
+
+            .nav.open a:nth-child(1) {
+                transition-delay: .08s
+            }
+
+            .nav.open a:nth-child(2) {
+                transition-delay: .12s
+            }
+
+            .nav.open a:nth-child(3) {
+                transition-delay: .16s
+            }
+
+            .nav.open a:nth-child(4) {
+                transition-delay: .2s
+            }
+
+            .nav.open a:nth-child(5) {
+                transition-delay: .24s
+            }
+
+            .nav.open a:nth-child(6) {
+                transition-delay: .28s
+            }
+
+            .nav a:not(.navbtn):hover {
+                background: #eff7f1
+            }
+
+            .nav .navbtn {
+                border-radius: 100px
+            }
+
+            .head {
+                position: relative;
+                z-index: 22
+            }
+
+            .header {
+                z-index: 80
+            }
+        }
+
+        @media(max-width:760px) {
+
+            input:not([type=checkbox]),
+            select,
+            textarea {
+                font-size: 16px !important
+            }
+        }
+
+        @media(hover:hover) {
+
+            .stepcard,
+            .sidecard,
+            .form-card,
+            .faq details {
+                transition: transform .32s, box-shadow .32s, border-color .32s
+            }
+
+            .stepcard:hover,
+            .sidecard:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 18px 42px #073d3214
+            }
+
+            .subject {
+                transition: transform .2s, background .2s, border-color .2s
+            }
+
+            .subject:hover {
+                transform: translateY(-2px)
+            }
+
+            .btn,
+            .navbtn,
+            .ghost {
+                transition: transform .25s, background .25s, box-shadow .25s
+            }
+
+            .btn:hover,
+            .navbtn:hover,
+            .ghost:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 28px #073d3228
+            }
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity .75s ease, transform .75s cubic-bezier(.2, .8, .2, 1)
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .form-step:not([hidden]) {
+            animation: stepEnter .4s ease both
+        }
+
+        @keyframes stepEnter {
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .floating-tools {
+            position: fixed;
+            right: 20px;
+            bottom: 22px;
+            z-index: 75;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 11px
+        }
+
+        .float-button {
+            border: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 52px;
+            border-radius: 100px;
+            box-shadow: 0 10px 35px #052e2780;
+            transition: transform .25s, opacity .25s, visibility .25s;
+            background: #073d32;
+            color: white;
+            padding: 0 19px;
+            font-size: 13px;
+            font-weight: 800
+        }
+
+        .float-button:hover {
+            transform: translateY(-4px)
+        }
+
+        .float-button svg {
+            width: 19px;
+            height: 19px
+        }
+
+        .float-button.top {
+            width: 48px;
+            min-height: 48px;
+            padding: 0;
+            background: white;
+            color: #073d32;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px)
+        }
+
+        .float-button.top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0)
+        }
+
+        .float-button.talk {
+            background: #d7b673;
+            color: #092e27
+        }
+
+        .float-button.talk .online-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #157f59;
+            box-shadow: 0 0 0 4px #157f5920
+        }
+
+        .help-panel {
+            position: fixed;
+            right: 20px;
+            bottom: 145px;
+            width: min(375px, calc(100vw - 30px));
+            max-height: min(550px, calc(100dvh - 180px));
+            overflow: auto;
+            background: white;
+            border: 1px solid #dce9df;
+            border-radius: 24px;
+            box-shadow: 0 25px 80px #092f2955;
+            z-index: 76;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(18px) scale(.97);
+            transform-origin: bottom right;
+            transition: opacity .3s, visibility .3s, transform .35s
+        }
+
+        .help-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1)
+        }
+
+        .help-head {
+            padding: 22px;
+            background: linear-gradient(135deg, #073d32, #17604e);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px
+        }
+
+        .help-head strong {
+            display: block;
+            font: 800 19px Manrope
+        }
+
+        .help-head p {
+            font-size: 12px;
+            color: #d5e9dc;
+            line-height: 1.6;
+            margin: 7px 0 0
+        }
+
+        .help-close {
+            border: 1px solid #ffffff50;
+            background: #ffffff1c;
+            color: white;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center
+        }
+
+        .help-close svg {
+            width: 16px
+        }
+
+        .help-content {
+            padding: 20px
+        }
+
+        .help-content p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #5c7267
+        }
+
+        .help-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #e3ebe5;
+            border-radius: 14px;
+            padding: 13px;
+            margin: 9px 0;
+            font-size: 13px;
+            font-weight: 800;
+            color: #073d32;
+            transition: background .2s
+        }
+
+        .help-link:hover {
+            background: #eff8f1
+        }
+
+        .help-link svg {
+            color: #19785d;
+            width: 18px
+        }
+
+        .help-foot {
+            padding: 0 20px 20px;
+            color: #74857a;
+            font-size: 11px;
+            line-height: 1.6
+        }
+
+        @media(max-width:520px) {
+            .floating-tools {
+                right: 13px;
+                bottom: 14px
+            }
+
+            .float-button.talk {
+                min-height: 49px;
+                padding: 0 15px
+            }
+
+            .help-panel {
+                right: 12px;
+                bottom: 128px
+            }
+        }
+
+        @media print {
+
+            .floating-tools,
+            .help-panel,
+            .menu-backdrop {
+                display: none !important
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+
+            *,
+            *:before,
+            *:after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important
+            }
+
+            .reveal-on-scroll {
+                opacity: 1;
+                transform: none
+            }
+        }
     </style>
 </head>
 
@@ -1140,7 +1601,7 @@
                 <div class="label">YOUR ADMISSIONS JOURNEY</div><strong>Simple. Guided. Personal.</strong>
                 <p>Apply without creating an account. After successful submission, receive your unique application
                     student number on screen to keep for future reference.</p>
-                <div class="rowline"><i data-lucide="shield-check"></i> Secure submission </div>
+                <div class="rowline"><i data-lucide="shield-check"></i> Secure submission through Supabase</div>
                 <div class="rowline"><i data-lucide="map-pin"></i> Mjejane Campus, Malelane Road</div>
             </div>
         </div>
@@ -1360,9 +1821,51 @@
         <div class="container foot"><span><strong>Nkomazi Global FET College</strong> · Mjejane Campus</span><span>©
                 <span id="year"></span> Nkomazi Global FET College · 2027 Admissions</span></div>
     </footer>
+
+    <div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
+    <div class="floating-tools"><button type="button" class="float-button top" id="backToTop" aria-label="Back to top"
+            title="Back to top"><i data-lucide="arrow-up"></i></button><button type="button" class="float-button talk"
+            id="talkButton" aria-expanded="false" aria-controls="helpPanel"><span class="online-dot"></span><i
+                data-lucide="message-circle"></i> Talk to us</button></div>
+    <section class="help-panel" id="helpPanel" role="dialog" aria-label="Admissions help" aria-hidden="true">
+        <div class="help-head">
+            <div><strong>How can we help?</strong>
+                <p>Nkomazi Global · 2027 Admissions</p>
+            </div><button class="help-close" id="helpClose" type="button" aria-label="Close help"><i
+                    data-lucide="x"></i></button>
+        </div>
+        <div class="help-content">
+            <p>Welcome! Here are some useful places to start. Our AI assistant will be added in a future update.</p><a
+                class="help-link" href="#application"><i data-lucide="clipboard-list"></i> Start or continue an
+                application</a><a class="help-link" href="#how-it-works"><i data-lucide="list-checks"></i> Understand
+                the application steps</a><a class="help-link" href="index.html#subjects"><i data-lucide="book-open"></i>
+                Explore available subjects</a><a class="help-link" href="index.html#fees"><i data-lucide="wallet"></i>
+                View fees and the 2027 offer</a>
+        </div>
+        <div class="help-foot">Information panel only — not a live chat or AI service yet. Please don't share personal
+            information here.</div>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         (() => { 'use strict'; const URL = 'https://zvqssclpdgcwxkssfchk.supabase.co', KEY = 'sb_publishable_-DSsit8AqWw61lXPiyw83Q_uNQfT4GY'; let step = 0, studentNumber = ''; const form = document.getElementById('applicationForm'), sections = [...document.querySelectorAll('.form-step')], tabs = [...document.querySelectorAll('[data-step-link]')], next = document.getElementById('next'), back = document.getElementById('back'), submit = document.getElementById('submit'), feedback = document.getElementById('feedback'); document.getElementById('year').textContent = new Date().getFullYear(); const menu = document.getElementById('menu'), nav = document.getElementById('nav'); menu.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)) }); nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false') })); function icons() { if (window.lucide) window.lucide.createIcons() } window.addEventListener('load', icons); function selected() { return [...document.querySelectorAll('#subjects input:checked')].map(e => e.value) } function data() { return { first_name: form.first_name.value.trim(), last_name: form.last_name.value.trim(), email: form.email.value.trim(), phone: form.phone.value.trim(), current_grade: form.current_grade.value, package: form.elements['package'].value, subjects: selected().join(', '), message: form.message.value.trim() || null, intake_year: 2027 } } function validate() { feedback.textContent = ''; const fields = sections[step].querySelectorAll('input:not([type=checkbox]),select,textarea'); for (const el of fields) { if (!el.checkValidity()) { el.reportValidity(); el.focus(); return false } } if (step === 1 && !selected().length) { feedback.textContent = 'Please select at least one subject.'; return false } if (step === 2 && !document.getElementById('consent').checked) { feedback.textContent = 'Please accept the consent statement to continue.'; return false } return true } function safeText(v) { return String(v ?? '—') } function showReview() { const d = data(), entries = [['Full name', d.first_name + ' ' + d.last_name], ['Email', d.email], ['Phone', d.phone], ['Last grade', d.current_grade], ['Package', d.package], ['Subjects', d.subjects], ['Intake', '2027']]; const r = document.getElementById('review'); r.replaceChildren(); for (const [label, value] of entries) { const item = document.createElement('div'), small = document.createElement('small'), strong = document.createElement('strong'); small.textContent = label; strong.textContent = safeText(value); item.append(small, strong); r.append(item) } } function render() { sections.forEach((el, i) => el.hidden = i !== step); tabs.forEach((el, i) => { el.classList.toggle('active', i === step); el.classList.toggle('done', i < step) }); document.getElementById('progressBar').style.width = ((step + 1) / 3 * 100) + '%'; back.hidden = step === 0; next.classList.toggle('hide', step === 2); submit.classList.toggle('hide', step !== 2); feedback.textContent = ''; if (step === 2) showReview() } next.addEventListener('click', () => { if (!validate()) return; step = Math.min(2, step + 1); render(); document.getElementById('application').scrollIntoView({ behavior: 'smooth', block: 'start' }) }); back.addEventListener('click', () => { step = Math.max(0, step - 1); render() }); tabs.forEach((tab, i) => tab.addEventListener('click', () => { if (i < step) { step = i; render() } })); form.addEventListener('submit', async e => { e.preventDefault(); if (!validate()) return; submit.disabled = true; submit.textContent = 'Submitting securely…'; feedback.textContent = ''; try { if (!window.supabase) throw new Error('Connection library could not load. Check your internet connection.'); const client = window.supabase.createClient(URL, KEY); const d = data(); const { data: result, error } = await client.rpc('submit_college_application', { p_first_name: d.first_name, p_last_name: d.last_name, p_email: d.email, p_phone: d.phone, p_current_grade: d.current_grade, p_package: d.package, p_subjects: d.subjects, p_message: d.message }); if (error) throw error; if (typeof result !== 'string' || !/^NGF-2027-\d+$/.test(result)) throw new Error('No valid student number was returned. Contact admissions before resubmitting.'); studentNumber = result; document.getElementById('studentNumber').textContent = studentNumber; document.getElementById('formShell').hidden = true; document.getElementById('success').hidden = false; document.getElementById('application').scrollIntoView({ behavior: 'smooth', block: 'start' }); icons() } catch (err) { console.error('Submission error:', err); feedback.textContent = /function|schema cache|404|PGRST202/i.test(err.message || '') ? 'The application database update has not been installed yet. Ask the site administrator to run the included SQL migration.' : 'Your application could not be confirmed. Please check your connection or contact admissions before trying again.' } finally { submit.disabled = false; submit.innerHTML = 'Submit application <i data-lucide="send"></i>'; icons() } }); document.getElementById('copyNumber').addEventListener('click', async () => { try { await navigator.clipboard.writeText(studentNumber); document.getElementById('copyFeedback').textContent = 'Number copied.' } catch { document.getElementById('copyFeedback').textContent = 'Please select and copy the number above.' } }); render() })();
+    </script>
+
+    <script>
+        (() => {
+            const menu = document.getElementById('menu'), nav = document.getElementById('nav'), backdrop = document.getElementById('menuBackdrop');
+            function closeMenu() { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', 'Open navigation'); backdrop.classList.remove('visible'); document.body.style.overflow = ''; }
+            // The existing application script toggles nav; synchronize its result with our backdrop.
+            menu.addEventListener('click', () => { const open = nav.classList.contains('open'); backdrop.classList.toggle('visible', open); menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); document.body.style.overflow = open ? 'hidden' : ''; });
+            backdrop.addEventListener('click', closeMenu); nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+            const talk = document.getElementById('talkButton'), panel = document.getElementById('helpPanel'), close = document.getElementById('helpClose'), top = document.getElementById('backToTop');
+            function setHelp(open) { panel.classList.toggle('open', open); panel.setAttribute('aria-hidden', String(!open)); talk.setAttribute('aria-expanded', String(open)); if (open) close.focus(); else talk.focus(); }
+            talk.addEventListener('click', () => setHelp(!panel.classList.contains('open'))); close.addEventListener('click', () => setHelp(false)); panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setHelp(false)));
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (panel.classList.contains('open')) setHelp(false); closeMenu(); } });
+            const syncTop = () => top.classList.toggle('visible', window.scrollY > 420); window.addEventListener('scroll', syncTop, { passive: true }); syncTop(); top.addEventListener('click', () => window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }));
+            const elements = document.querySelectorAll('.stepcard,.heading,.sidecard,.faq details'); if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) { const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }) }, { threshold: .08 }); elements.forEach(el => { el.classList.add('reveal-on-scroll'); observer.observe(el) }); } else elements.forEach(el => el.classList.add('is-visible'));
+            window.addEventListener('load', () => { if (window.lucide) window.lucide.createIcons() });
+        })();
     </script>
 </body>
 
