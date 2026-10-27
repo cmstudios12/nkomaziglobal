@@ -2114,10 +2114,517 @@
                 font-size: 7.5px
             }
         }
+
+        /* 2027 INTERACTION UPGRADE */
+        :root {
+            --ease-premium: cubic-bezier(.22, 1, .36, 1)
+        }
+
+        html {
+            scroll-padding-top: 92px
+        }
+
+        body {
+            overflow-x: hidden
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid #c69b58;
+            outline-offset: 4px
+        }
+
+        .nav-toggle {
+            position: relative;
+            z-index: 102;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: background .3s, transform .35s var(--ease-premium);
+            touch-action: manipulation
+        }
+
+        .nav-toggle:hover {
+            background: #dcebe1;
+            transform: rotate(-5deg)
+        }
+
+        .hamburger-lines {
+            width: 22px;
+            height: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative
+        }
+
+        .hamburger-lines span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            border-radius: 8px;
+            background: #153d35;
+            transform-origin: center;
+            transition: transform .4s var(--ease-premium), opacity .2s, width .35s
+        }
+
+        .hamburger-lines span:nth-child(2) {
+            width: 72%;
+            margin-left: auto
+        }
+
+        .nav-toggle[aria-expanded="true"] .hamburger-lines span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg)
+        }
+
+        .nav-toggle[aria-expanded="true"] .hamburger-lines span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(12px)
+        }
+
+        .nav-toggle[aria-expanded="true"] .hamburger-lines span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg)
+        }
+
+        .nav-toggle[aria-expanded="true"] {
+            background: #e3eee6
+        }
+
+        .menu-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 30, 26, .48);
+            z-index: 69;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .4s, visibility .4s;
+            backdrop-filter: blur(0)
+        }
+
+        .menu-backdrop.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            backdrop-filter: blur(4px)
+        }
+
+        body.menu-open {
+            overflow: hidden
+        }
+
+        @media(max-width:900px) {
+            .site-nav {
+                display: flex !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: auto !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                width: min(86vw, 370px);
+                max-height: none !important;
+                padding: 106px 25px 34px !important;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 6px !important;
+                background: #fff;
+                z-index: 90;
+                box-shadow: -22px 0 70px #062d2530;
+                transform: translateX(110%);
+                opacity: 0;
+                visibility: hidden;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                transition: transform .55s var(--ease-premium), opacity .35s, visibility .55s
+            }
+
+            .site-nav.open {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible
+            }
+
+            .site-nav>a {
+                display: flex;
+                align-items: center;
+                min-height: 55px;
+                padding: 15px 12px !important;
+                border-bottom: 1px solid #e9f0ea;
+                font-size: 15px !important;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: opacity .3s, transform .45s var(--ease-premium), background .25s;
+                border-radius: 12px
+            }
+
+            .site-nav.open>a {
+                opacity: 1;
+                transform: translateX(0)
+            }
+
+            .site-nav.open>a:nth-child(1) {
+                transition-delay: .09s
+            }
+
+            .site-nav.open>a:nth-child(2) {
+                transition-delay: .14s
+            }
+
+            .site-nav.open>a:nth-child(3) {
+                transition-delay: .19s
+            }
+
+            .site-nav.open>a:nth-child(4) {
+                transition-delay: .24s
+            }
+
+            .site-nav.open>a:nth-child(5) {
+                transition-delay: .29s
+            }
+
+            .site-nav.open>a:nth-child(6) {
+                transition-delay: .34s
+            }
+
+            .site-nav>a:hover {
+                background: #f1f7f2
+            }
+
+            .site-nav .nav-cta {
+                margin-top: 16px;
+                min-height: 54px;
+                justify-content: center;
+                border-radius: 16px !important
+            }
+
+            .site-header {
+                z-index: 100
+            }
+        }
+
+        /* Buttons and cards: subtle, not distracting */
+        .btn,
+        .action-button,
+        .nav-cta {
+            transition: transform .3s var(--ease-premium), box-shadow .3s, background .3s
+        }
+
+        .btn:hover,
+        .action-button:hover,
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px #0a352520
+        }
+
+        .feature,
+        .subject,
+        .quick-icon,
+        .subject-icon,
+        .feature-icon,
+        .round-icon {
+            transition: transform .4s var(--ease-premium), box-shadow .3s, background .3s
+        }
+
+        .feature:hover {
+            transform: translateY(-7px)
+        }
+
+        .feature:hover .feature-icon,
+        .subject:hover .subject-icon {
+            transform: rotate(-7deg) scale(1.07)
+        }
+
+        .hero-content>* {
+            animation: heroEnter .85s var(--ease-premium) both
+        }
+
+        .hero-content>*:nth-child(2) {
+            animation-delay: .12s
+        }
+
+        .hero-content>*:nth-child(3) {
+            animation-delay: .22s
+        }
+
+        .hero-content>*:nth-child(4) {
+            animation-delay: .32s
+        }
+
+        .hero-content>*:nth-child(5) {
+            animation-delay: .42s
+        }
+
+        @keyframes heroEnter {
+            from {
+                opacity: 0;
+                transform: translateY(25px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .8s var(--ease-premium), transform .8s var(--ease-premium)
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        /* Fixed action controls */
+        .floating-actions {
+            position: fixed;
+            right: clamp(16px, 3vw, 35px);
+            bottom: clamp(18px, 3vw, 35px);
+            z-index: 65;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px
+        }
+
+        .float-button {
+            border: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 12px 32px #052e2840;
+            transition: transform .3s var(--ease-premium), box-shadow .3s, opacity .3s;
+            background: #103b38;
+            color: white;
+            font: 800 13px 'DM Sans', sans-serif
+        }
+
+        .float-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px #052e2855
+        }
+
+        .float-button svg {
+            width: 19px;
+            height: 19px
+        }
+
+        .talk-button {
+            border-radius: 100px;
+            padding: 16px 21px;
+            background: #e5c38c;
+            color: #153a35
+        }
+
+        .top-button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            pointer-events: none
+        }
+
+        .top-button.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto
+        }
+
+        /* Future AI assistant preview, intentionally not a live chatbot */
+        .chat-panel {
+            position: fixed;
+            right: clamp(16px, 3vw, 35px);
+            bottom: 106px;
+            z-index: 66;
+            width: min(390px, calc(100vw - 32px));
+            max-height: min(620px, calc(100dvh - 130px));
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border: 1px solid #e0eae1;
+            border-radius: 25px;
+            box-shadow: 0 24px 75px #082f2940;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(.96);
+            transform-origin: bottom right;
+            transition: opacity .3s, transform .4s var(--ease-premium), visibility .4s
+        }
+
+        .chat-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1)
+        }
+
+        .chat-head {
+            background: linear-gradient(115deg, #103b38, #25665a);
+            padding: 22px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            align-items: flex-start
+        }
+
+        .chat-head strong {
+            font: 800 18px Manrope, sans-serif;
+            display: block;
+            margin-bottom: 6px
+        }
+
+        .chat-head small {
+            color: #d3e9dd;
+            font-size: 12px;
+            line-height: 1.5
+        }
+
+        .chat-close {
+            border: 1px solid #ffffff55;
+            background: #ffffff18;
+            color: white;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            flex: none
+        }
+
+        .chat-close svg {
+            width: 17px;
+            height: 17px
+        }
+
+        .chat-body {
+            padding: 22px;
+            overflow-y: auto
+        }
+
+        .chat-greeting {
+            background: #f2f7f2;
+            border-radius: 17px 17px 17px 5px;
+            padding: 17px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: #34584e;
+            margin: 0 0 17px
+        }
+
+        .chat-options {
+            display: grid;
+            gap: 9px
+        }
+
+        .chat-options a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border: 1px solid #dce8de;
+            border-radius: 13px;
+            padding: 13px 14px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #17483e;
+            transition: background .2s, transform .2s
+        }
+
+        .chat-options a:hover {
+            background: #f0f7f1;
+            transform: translateX(3px)
+        }
+
+        .chat-options svg {
+            width: 16px;
+            height: 16px
+        }
+
+        .chat-foot {
+            padding: 13px 22px;
+            border-top: 1px solid #e8efe9;
+            color: #81958b;
+            font-size: 11px
+        }
+
+        @media(max-width:620px) {
+            .floating-actions {
+                right: 16px;
+                bottom: 16px;
+                gap: 9px
+            }
+
+            .talk-button {
+                padding: 14px 17px
+            }
+
+            .top-button {
+                width: 43px;
+                height: 43px
+            }
+
+            .chat-panel {
+                right: 12px;
+                bottom: 88px;
+                width: calc(100vw - 24px);
+                max-height: calc(100dvh - 105px)
+            }
+
+            .hero-content>* {
+                animation-duration: .65s
+            }
+        }
+
+        /* iOS Safari: inputs smaller than 16px cause automatic focus zoom */
+        @media(max-width:900px) {
+
+            input,
+            select,
+            textarea,
+            .field input:not([type=checkbox]),
+            .field select,
+            .field textarea,
+            .search {
+                font-size: 16px !important
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+
+            .hero-content>*,
+            .reveal {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important
+            }
+
+            .site-nav,
+            .site-nav>a,
+            .chat-panel,
+            .float-button,
+            .menu-backdrop {
+                transition: none !important
+            }
+        }
     </style>
     <script defer="" src="https://unpkg.com/lucide@latest"></script>
-    <script
-        defer>document.addEventListener('DOMContentLoaded', () => { const menu = document.getElementById('navToggle'), nav = document.getElementById('siteNav'); function icons() { if (window.lucide) window.lucide.createIcons() } menu?.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); menu.innerHTML = open ? '<i data-lucide="x"></i>' : '<i data-lucide="menu"></i>'; icons() }); nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menu?.setAttribute('aria-expanded', 'false'); if (menu) menu.innerHTML = '<i data-lucide="menu"></i>'; icons() })); document.querySelectorAll('[data-page]').forEach(a => { if (a.tagName === 'A' && a.dataset.page === document.body.dataset.page) a.classList.add('active') }); const y = document.getElementById('currentYear'); if (y) y.textContent = new Date().getFullYear(); const old = document.getElementById('year'); if (old) old.textContent = new Date().getFullYear(); icons() });</script>
+
 </head>
 
 <body data-page="home">
@@ -2130,17 +2637,18 @@
     <header class="site-header">
         <div class="wrap site-header-inner"><a class="site-brand" href="index.html"><img
                     alt="Nkomazi Global FET College illustrative emblem" class="site-logo"
-                    src="Logo.png" /><span><strong>NKOMAZI
+                    src="logo.png" /><span><strong>NKOMAZI
                         GLOBAL</strong><small>FET COLLEGE <b>·</b> MJEJANE </small></span></a>
             <nav aria-label="Main navigation" class="site-nav" id="siteNav"><a data-page="home"
                     href="index.html">Home</a><a href="index.html#about">About</a><a
                     href="index.html#subjects">Subjects</a><a href="index.html#fees">Fees &amp; offers</a><a
-                    data-page="apply" href="apply.html">Admissions</a><a class="nav-cta" href="apply.html">Apply for 2027 <i
-                        data-lucide="arrow-up-right"></i></a></nav><button aria-controls="siteNav" aria-expanded="false"
-                aria-label="Open navigation" class="nav-toggle" id="navToggle" type="button"><i
-                    data-lucide="menu"></i></button>
+                    data-page="apply" href="apply.html">Admissions</a><a class="nav-cta" href="apply.html">Apply for
+                    2027 <i data-lucide="arrow-up-right"></i></a></nav><button aria-controls="siteNav"
+                aria-expanded="false" aria-label="Open navigation" class="nav-toggle" id="navToggle" type="button"><span
+                    class="hamburger-lines" aria-hidden="true"><span></span><span></span><span></span></span></button>
         </div>
     </header>
+    <div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
     <main>
         <section class="hero">
             <div class="hero-photo"></div>
@@ -2333,14 +2841,85 @@
                 </div>
                 <div>
                     <h3>Our campus</h3>
-                    <p>Mjejane Campus<br />Opposite My Angel Country Lodge<br />Malelane Road, Mpumalanga</p><a
-                        href="admin.html">Staff sign in</a>
+                    <p>Mjejane Campus<br />Opposite My Angel Country Lodge<br />Malelane Road, Mpumalanga</p>
                 </div>
             </div>
             <div class="footer-bottom"><span>© <span id="currentYear">2026</span> Nkomazi Global FET
                     College</span><span>Applications subject to admission requirements.</span></div>
         </div>
     </footer>
+
+    <div class="floating-actions" aria-label="Quick actions">
+        <button class="float-button top-button" id="backToTop" type="button" aria-label="Back to top"
+            title="Back to top"><i data-lucide="arrow-up"></i></button>
+        <button class="float-button talk-button" id="talkButton" type="button" aria-haspopup="dialog"
+            aria-expanded="false" aria-controls="chatPanel"><i data-lucide="messages-square"></i><span>Talk to
+                us</span></button>
+    </div>
+    <section class="chat-panel" id="chatPanel" role="dialog" aria-modal="false" aria-label="Nkomazi admissions help"
+        aria-hidden="true">
+        <div class="chat-head">
+            <div><strong>How can we help?</strong><small>Nkomazi Global FET College · Admissions</small></div><button
+                class="chat-close" id="chatClose" type="button" aria-label="Close help panel"><i
+                    data-lucide="x"></i></button>
+        </div>
+        <div class="chat-body">
+            <p class="chat-greeting">Welcome! Explore useful information below. Our AI admissions assistant is coming
+                later.</p>
+            <div class="chat-options"><a href="apply.html">Start a 2027 application <i
+                        data-lucide="arrow-up-right"></i></a><a href="index.html#subjects">Explore available subjects <i
+                        data-lucide="arrow-up-right"></i></a><a href="index.html#fees">See fees and offers <i
+                        data-lucide="arrow-up-right"></i></a><a href="index.html#campus">Find our campus <i
+                        data-lucide="arrow-up-right"></i></a></div>
+        </div>
+        <div class="chat-foot">Information panel · Live chat and AI not connected yet</div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menu = document.getElementById('navToggle');
+            const nav = document.getElementById('siteNav');
+            const backdrop = document.getElementById('menuBackdrop');
+            const talk = document.getElementById('talkButton');
+            const panel = document.getElementById('chatPanel');
+            const chatClose = document.getElementById('chatClose');
+            const top = document.getElementById('backToTop');
+            const icons = () => { if (window.lucide) window.lucide.createIcons(); };
+            icons();
+            function closeMenu(restoreFocus = false) {
+                nav.classList.remove('open'); backdrop.classList.remove('is-open');
+                document.body.classList.remove('menu-open');
+                menu.setAttribute('aria-expanded', 'false'); menu.setAttribute('aria-label', 'Open navigation');
+                if (restoreFocus) menu.focus();
+            }
+            function openMenu() {
+                closeChat();
+                nav.classList.add('open'); backdrop.classList.add('is-open');
+                document.body.classList.add('menu-open');
+                menu.setAttribute('aria-expanded', 'true'); menu.setAttribute('aria-label', 'Close navigation');
+                const first = nav.querySelector('a'); if (first) first.focus();
+            }
+            menu.addEventListener('click', () => nav.classList.contains('open') ? closeMenu(true) : openMenu());
+            backdrop.addEventListener('click', () => closeMenu(true));
+            nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => closeMenu()));
+            window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
+            function closeChat(restoreFocus = false) { panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true'); talk.setAttribute('aria-expanded', 'false'); if (restoreFocus) talk.focus(); }
+            function openChat() { closeMenu(); panel.classList.add('open'); panel.setAttribute('aria-hidden', 'false'); talk.setAttribute('aria-expanded', 'true'); chatClose.focus(); }
+            talk.addEventListener('click', () => panel.classList.contains('open') ? closeChat(true) : openChat());
+            chatClose.addEventListener('click', () => closeChat(true));
+            panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => closeChat()));
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (nav.classList.contains('open')) closeMenu(true); if (panel.classList.contains('open')) closeChat(true); } });
+            const updateScroll = () => top.classList.toggle('show', window.scrollY > 450);
+            window.addEventListener('scroll', updateScroll, { passive: true }); updateScroll();
+            top.addEventListener('click', () => window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }));
+            const year = document.getElementById('currentYear'); if (year) year.textContent = new Date().getFullYear();
+            document.querySelectorAll('[data-page]').forEach(a => { if (a.tagName === 'A' && a.dataset.page === document.body.dataset.page) a.classList.add('active') });
+            const targets = document.querySelectorAll('.feature,.subject,.section-heading,.image-composition,.copy,.offer,.campus-img,.quick-item');
+            if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target) } }), { threshold: .08, rootMargin: '0px 0px -25px 0px' });
+                targets.forEach(el => { el.classList.add('reveal'); observer.observe(el) });
+            }
+        });
+    </script>
 </body>
 
 </html>
